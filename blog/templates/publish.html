@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}index{% endblock %}
+{% block content %}
+<div class="reg">
+    <h3>Publish your article</h3>
+</div>
+
+<form class="forms" action="{{url_for('view.publish')}}"method="POST">
+        <div>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" required>
+        </div>
+
+        <div class="body">
+            <h5>Text:</h5>
+            <textarea name="bodytext" id="result" class="txt" placeholder="Type here...">
+            </textarea>
+        </div>
+
+        <button class="pub">Publish</button>
+</form>
+{% endblock content %}

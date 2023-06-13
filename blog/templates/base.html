@@ -1,0 +1,56 @@
+{% if current_user.is_authenticated %}
+    <li class="active"><a href="{{url_for('views.index')}}">Home</a></li>
+    <li><a href="{{url_for('views.publish')}}">Publish</a></li>
+    <li><a href="{{url_for('views.about')}}">About</a></li>
+    <li><a href="{{url_for('user.contact')}}">Contact</a></li>
+    <li><a id="logout" href="{{url_for('user.logout')}}">Logout</a><li>
+
+    {% else %}
+    <li class="active"><a href="{{url_for('views.index')}}">Home</a></li>
+    <li><a href="{{url_for('views.about')}}">About</a></li>
+    <li><a href="{{url_for('user.contact')}}">Contact</a></li>
+    <li><a href="{{url_for('user.register')}}">Register</a></li>    
+    <li><a id="login" href="{{url_for('user.login')}}">Login</a><li>
+
+    {% endif %}
+    </ul>
+    <main>
+        <div class="container">
+                <!-- alerts for errors -->
+                {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                <div id="failure" class="alert alert-danger alert-dismissible fade show"
+         role="alert" data-bs-dismiss="alert"
+                align="center">
+                {{ messages }}
+                {% for message in errors %}
+                {{ message }}
+                {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+        
+                <!-- alerts for success -->
+                {% with success = get_flashed_messages(category_filter=["success"]) %}
+                {% if success %}
+                <div class="alert alert-success alert-dismissible fade show"
+                 role="alert" data-bs-dismiss="alert" align="center">
+                {{ messages }}
+                {% for message in success %}
+                {{ message }}
+                {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+        
+                </div>
+        
+        <div class="container">{% block content %}{% endblock %}</div>
+        
+        </main>
+        
+
+
+
+
+
